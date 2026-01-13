@@ -1,0 +1,16 @@
+// Hotel ER Diagram
+digraph {
+	User [label="User|id\lfirst_name\llast_name\lemail\l...\l" shape=record]
+	Category [label="Category|id\ltitle\ldescription\lslug\limage\lis_published\lcreated_at\l" shape=record]
+	Location [label="Location|id\lname\lis_published\lcreated_at\l" shape=record]
+	Room [label="Room|id\ltitle\ltext\lslug\limage\lpub_date\lauthor\llocation\lcategory\lprice\lcapacity\lis_published\lcreated_at\l" shape=record]
+	Booking [label="Booking|id\lroom\lauthor\lcheck_in\lcheck_out\lcreated_at\l" shape=record]
+	Comment [label="Comment|id\ltext\lroom\lauthor\lcreated_at\l" shape=record]
+	User -> Room [label=author]
+	Location -> Room [label=location]
+	Category -> Room [label=category]
+	Room -> Booking [label=room]
+	User -> Booking [label=author]
+	Room -> Comment [label=room]
+	User -> Comment [label=author]
+}

@@ -1,0 +1,68 @@
+{% load static %}
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'hotel:index' %}">
+        <img src="{% static 'img/logo.png' %}" width="30" height="30" class="d-inline-block align-top me-2" alt="">
+        Гостиница "Роскошный Отдых"
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        {% with request.resolver_match.view_name as view_name %}
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link {% if view_name == 'pages:about' %}active{% endif %}" href="{% url 'pages:about' %}">О нас</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% if view_name == 'pages:rules' %}active{% endif %}" href="{% url 'pages:rules' %}">Правила</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% if view_name == 'pages:contacts' %}active{% endif %}" href="{% url 'pages:contacts' %}">Контакты</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% if view_name == 'pages:gallery' %}active{% endif %}" href="{% url 'pages:gallery' %}">Галерея</a>
+            </li>
+          </ul>
+          {% if user.is_authenticated %}
+            <ul class="navbar-nav">
+              {% if user.is_staff %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'hotel:create_room' %}">Добавить номер</a>
+                </li>
+              {% endif %}
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  {{ user.username }}
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="{% url 'hotel:profile' user.username %}">Профиль</a></li>
+                  <li><a class="dropdown-item" href="{% url 'hotel:user_bookings' %}">Мои бронирования</a></li>
+                  <li><a class="dropdown-item" href="{% url 'hotel:edit_profile' %}">Редактировать профиль</a></li>
+                  <li><a class="dropdown-item" href="{% url 'password_change' %}">Изменить пароль</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li>
+                    <form method="post" action="{% url 'logout' %}" class="d-inline">
+                      {% csrf_token %}
+                      <button type="submit" class="dropdown-item">Выйти</button>
+                    </form>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          {% else %}
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Войти</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'hotel:register' %}">Регистрация</a>
+              </li>
+            </ul>
+          {% endif %}
+        {% endwith %}
+      </div>
+    </div>
+  </nav>
+</header>

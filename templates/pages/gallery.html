@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+  Галерея
+{% endblock %}
+{% block content %}
+  <div class="container">
+    <h1 class="text-center mb-4">Галерея гостиницы</h1>
+    <div class="row gallery">
+      <div class="col-md-4 mb-3">
+        <img src="{% static 'img/gallery/room1.jpg' %}" class="img-fluid rounded" alt="Номер 1" data-bs-toggle="modal" data-bs-target="#modal1">
+      </div>
+      <div class="col-md-4 mb-3">
+        <img src="{% static 'img/gallery/room2.jpg' %}" class="img-fluid rounded" alt="Номер 2" data-bs-toggle="modal" data-bs-target="#modal2">
+      </div>
+      <div class="col-md-4 mb-3">
+        <img src="{% static 'img/gallery/lobby.jpg' %}" class="img-fluid rounded" alt="Лобби" data-bs-toggle="modal" data-bs-target="#modal3">
+      </div>
+      <div class="col-md-4 mb-3">
+        <img src="{% static 'img/gallery/restaurant.jpg' %}" class="img-fluid rounded" alt="Ресторан" data-bs-toggle="modal" data-bs-target="#modal4">
+      </div>
+      <div class="col-md-4 mb-3">
+        <img src="{% static 'img/gallery/spa.jpg' %}" class="img-fluid rounded" alt="СПА" data-bs-toggle="modal" data-bs-target="#modal5">
+      </div>
+      <div class="col-md-4 mb-3">
+        <img src="{% static 'img/gallery/pool.jpg' %}" class="img-fluid rounded" alt="Бассейн" data-bs-toggle="modal" data-bs-target="#modal6">
+      </div>
+    </div>
+  </div>
+
+  <!-- Modals -->
+  <div class="modal fade" id="modal1" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <img src="{% static 'img/gallery/room1.jpg' %}" class="img-fluid">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="modal2" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <img src="{% static 'img/gallery/room2.jpg' %}" class="img-fluid">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="modal3" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <img src="{% static 'img/gallery/lobby.jpg' %}" class="img-fluid">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="modal4" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <img src="{% static 'img/gallery/restaurant.jpg' %}" class="img-fluid">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="modal5" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <img src="{% static 'img/gallery/spa.jpg' %}" class="img-fluid">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="modal6" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <img src="{% static 'img/gallery/pool.jpg' %}" class="img-fluid">
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,28 @@
+<div class="col d-flex justify-content-center">
+  <div class="card" style="width: 40rem;">
+    <div class="card-body">
+      {% if room.image %}
+        <a href="{{ room.image.url }}" target="_blank">
+          <img class="border-3 rounded img-fluid img-thumbnail mb-2 mx-auto d-block" src="{{ room.image.url }}">
+        </a>
+      {% endif %}
+      <h5 class="card-title">{{ room.title }}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">
+        <small>
+          {% if not room.is_published %}
+            <p class="text-danger">Номер снят с публикации админом</p>
+          {% elif not room.category.is_published %}
+            <p class="text-danger">Выбранная категория снята с публикации админом</p>
+          {% endif %}
+          {{ room.pub_date|date:"d E Y, H:i" }} | {% if room.location and room.location.is_published %}{{ room.location.name }}{% else %}Планета Земля{% endif %}<br>
+          От автора <a class="text-muted" href="{% url 'hotel:profile' room.author.username %}">@{{ room.author.username }}</a> в
+          категории {% include "includes/category_link.html" %}
+        </small>
+      </h6>
+      <p class="card-text">{{ room.text|truncatewords:10 }}</p>
+      <p>Цена: {{ room.price }} руб. | Вместимость: {{ room.capacity }}</p>
+      <a href="{% url 'hotel:room_detail' room.slug %}" class="card-link">Читать полный текст</a>
+      <a href="{% url 'hotel:room_detail' room.slug %}" class="card-link text-muted">Комментарии ({{ room.comments.count }})</a>
+    </div>
+  </div>
+</div>
